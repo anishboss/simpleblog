@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<h1>Dashboard</h1>
+<a href="{% url 'addPost' %}" class="btn btn-primary">Add Post</a>
+<div class="row">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col" colspan="2">Operation</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for post in posts %}
+          <tr>
+            <th scope="row">{{post.id}}</th>
+            <td>{{post.title}}</td>
+            <td>{{post.description}}</td>
+            <td><a href="{% url 'editPost' post.id %}" class="btn btn-secondary">Edit</a></td>
+            <td>
+              {%if perms.blog.delete_post %}
+              <a href="{% url 'deletePost' post.id %}" class="btn btn-danger">Delete</a></td>
+              {% endif %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      
+</div>
+{% endblock content%}

@@ -1,0 +1,10 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+{% for post in posts %}
+<div class="row my-2 font-weight-bold"><h1 style="font-weight: bold;">{{post.title}}</h1></div>
+<div class="row"><p>{{post.description}}</p></div>
+{% endfor %}
+
+{% endblock content %}

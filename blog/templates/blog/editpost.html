@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<form action="" method="post" novalidate>
+    {% csrf_token %}
+    {% for fm in form %}
+    <div class="form-control">{{fm.label_tag}}{{fm}}{{fm.errors|striptags}}</div>
+    {% endfor %}
+<input type="submit" class="btn btn-primary my-2" value="Edit Post">
+<a class="btn btn-danger" href="{% url 'userDashboard' %}">Cancel</a>
+</form>
+{%if messages %}
+{%for message in messages %}
+<p>{{message}}</p>
+{% endfor %}
+{% endif %}
+
+{% endblock content %}
